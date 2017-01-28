@@ -2,6 +2,7 @@ package com.example.android.miwok;
 
 import android.app.Activity;
 import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,8 +20,12 @@ public class WordAdapter extends ArrayAdapter<Word> {
 
     private static final String LOG_TAG = WordAdapter.class.getSimpleName();
 
-    public WordAdapter(Activity context, ArrayList<Word> words){
+    // resource ID for the backgound color of the list view of words
+    private int colorResourceId;
+
+    public WordAdapter(Activity context, ArrayList<Word> words, int colorResourceId){
         super(context, 0, words);
+        this.colorResourceId = colorResourceId;
     }
 
     @NonNull
@@ -45,6 +50,13 @@ public class WordAdapter extends ArrayAdapter<Word> {
         }else{
             imageView.setVisibility(View.GONE);
         }
+
+        // Set the theme color for the list item
+        View textContainer = listItemView.findViewById(R.id.text_container);
+        // Find the color that the resource ID maps to
+        int color = ContextCompat.getColor(getContext(), colorResourceId);
+        // Set the background color of the text container View
+        textContainer.setBackgroundColor(color);
 
         return listItemView;
     }

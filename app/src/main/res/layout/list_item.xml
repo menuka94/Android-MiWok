@@ -2,9 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="horizontal"
-    android:padding="16dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/tan_background"
     android:weightSum="1">
 
     <ImageView
@@ -14,24 +14,35 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="@dimen/list_item_height"
         android:id="@+id/text_container"
         android:orientation="vertical"
-        android:paddingLeft="16dp">
+        >
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="bottom"
             tools:text="lutti"
             android:id="@+id/miwok_text_view"
-            />
+            android:textStyle="normal|bold"
+            android:textSize="18sp"
+            android:paddingLeft="10dp"
+            android:paddingStart="10dp"
+            android:textColor="@android:color/white" />
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="top"
             tools:text="one"
             android:id="@+id/default_text_view"
-            />
+            android:textSize="18sp"
+            android:paddingLeft="10dp"
+            android:paddingStart="10dp"
+            android:textColor="@android:color/white" />
 
 
     </LinearLayout>
