@@ -7,9 +7,9 @@ package com.example.android.miwok;
 public class Word {
     private String defaultTranslation;
     private String miwokTranslation;
+    private static final int NO_IMAGE_ID = -1;
     private int imageResourceId = NO_IMAGE_ID;
     private int audioResourceId;
-    private static final int NO_IMAGE_ID = -1;
 
     public Word(String defaultTranslation, String miwokTranslation, int audioResourceId) {
         this.defaultTranslation = defaultTranslation;
