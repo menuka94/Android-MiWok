@@ -38,15 +38,26 @@ public class FamilyMembersActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Word word = words.get(i);
 
+                releaseMediaPlayer();
+
                 mediaPlayer = MediaPlayer.create(FamilyMembersActivity.this, word.getAudioResourceId());
 
-                if(mediaPlayer.isPlaying()){
-                    mediaPlayer.pause();
-                }else{
-                    mediaPlayer.start();
-                }
+                mediaPlayer.start();
+                mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                    @Override
+                    public void onCompletion(MediaPlayer mediaPlayer) {
+                        releaseMediaPlayer();
+                    }
+                });
             }
         });
 
+    }
+
+    private void releaseMediaPlayer(){
+        if(mediaPlayer != null){
+            mediaPlayer.release();
+            mediaPlayer = null;
+        }
     }
 }

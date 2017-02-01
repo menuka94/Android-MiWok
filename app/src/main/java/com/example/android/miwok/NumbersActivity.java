@@ -40,14 +40,28 @@ public class NumbersActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Word word = words.get(i);
 
+                // release the media player if it currently exists because we are about to
+                // play a different sound file
+                releaseMediaPlayer();
+
                 mediaPlayer = MediaPlayer.create(NumbersActivity.this, word.getAudioResourceId());
 
-                if(mediaPlayer.isPlaying()){
-                    mediaPlayer.pause();
-                }else{
-                    mediaPlayer.start();
-                }
+                // Start the audio file
+                mediaPlayer.start();
+                mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                    @Override
+                    public void onCompletion(MediaPlayer mediaPlayer) {
+                        releaseMediaPlayer();
+                    }
+                });
             }
         });
+    }
+
+    private void releaseMediaPlayer(){
+        if(mediaPlayer != null){
+            mediaPlayer.release();
+            mediaPlayer = null;
+        }
     }
 }
